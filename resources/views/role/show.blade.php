@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('template_title')
     {{ $role->user_id ?? __('Mostrar') . ' ' . __('Role') }}
 @endsection
 
-@section('content')
+@section('panel-content')
 <section class="content container-fluid">
   <div class="row">
     <div class="col-md-12">

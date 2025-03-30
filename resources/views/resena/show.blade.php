@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('template_title')
     {{ $resena->id_reserva ?? __('Mostrar') . ' ' . __('Reseña') }}
 @endsection
 
-@section('content')
+@section('panel-content')
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">

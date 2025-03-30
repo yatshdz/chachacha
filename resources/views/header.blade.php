@@ -10,7 +10,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Chachacha</div>
       </a>
   
       <!-- Divider -->
@@ -18,7 +18,7 @@
   
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="{{ url('index.html') }}">
+        <a class="nav-link" href="{{ url('home') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
@@ -28,8 +28,56 @@
       <hr class="sidebar-divider">
   
       <!-- Heading -->
-      <div class="sidebar-heading">Interface</div>
+      <div class="sidebar-heading">Principal</div>
   
+      <!-- Notificaciones -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/notificaciones') }}">
+            <i class="fas fa-bell"></i> <!-- Icono correcto -->
+            <span>Notificaciones</span>
+        </a>
+      </li>
+
+      <!-- Pagos -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/pagos') }}">
+            <i class="fas fa-credit-card"></i> <!-- Icono correcto -->
+            <span>Pagos</span>
+        </a>
+      </li>
+
+      <!-- Perfiles -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/perfiles') }}">
+            <i class="fas fa-users"></i> <!-- Icono correcto -->
+            <span>Perfiles</span>
+        </a>
+      </li>
+
+      <!-- Reseñas -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/resenas') }}">
+            <i class="fas fa-star"></i> <!-- Icono correcto -->
+            <span>Reseñas</span>
+        </a>
+      </li>
+
+      <!-- Reservas -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/reservas') }}">
+            <i class="fas fa-calendar-check"></i> <!-- Icono correcto -->
+            <span>Reservas</span>
+        </a>
+      </li>
+
+      <!-- Roles -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/roles') }}">
+            <i class="fas fa-user-tag"></i> <!-- Icono correcto -->
+            <span>Roles</span>
+        </a>
+      </li>
+
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -87,23 +135,7 @@
           </div>
         </div>
       </li>
-  
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('charts.html') }}">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span>
-        </a>
-      </li>
-  
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('tables.html') }}">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span>
-        </a>
-      </li>
-  
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
   

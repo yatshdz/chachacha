@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('template_title')
     Reseñas
 @endsection
 
-@section('content')
+@section('panel-content')
 <div class="container-fluid">
     <div class="row padding-1 p-1">
         <div class="col-sm-12">
