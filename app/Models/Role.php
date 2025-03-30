@@ -22,9 +22,10 @@ class Role extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
+        'nombre',
+        'apellido', 
         'rol',
-        'verificado',
+        'verificado'
     ];
 
 

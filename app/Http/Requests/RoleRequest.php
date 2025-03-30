@@ -6,25 +6,42 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RoleRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return true;
+        return true; // Permitir a todos los usuarios enviar el formulario
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'user_id'   => 'required|exists:users,id',
-            'rol'       => 'required|in:cliente,trabajador,administrador',
-            'verificado'=> 'nullable|boolean',
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'rol' => 'required|in:cliente,trabajador',
+            'verificado' => 'required|boolean'
+        ];
+    }
+
+    // Mensajes de validación personalizados
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'El campo nombre es obligatorio',
+            'apellido.required' => 'El campo apellido es obligatorio',
+            'rol.required' => 'Debe seleccionar un rol',
+            'rol.in' => 'Rol no válido',
+            'verificado.required' => 'Debe especificar si está verificado',
+            'verificado.boolean' => 'Valor no válido para verificación'
+        ];
+    }
+
+    // Nombres de campos personalizados
+    public function attributes(): array
+    {
+        return [
+            'nombre' => 'nombre',
+            'apellido' => 'apellido',
+            'rol' => 'rol',
+            'verificado' => 'verificado'
         ];
     }
 }

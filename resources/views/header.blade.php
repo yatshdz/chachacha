@@ -74,7 +74,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/roles') }}">
             <i class="fas fa-user-tag"></i> <!-- Icono correcto -->
-            <span>Roles</span>
+            <span>Usuarios</span>
         </a>
       </li>
 
