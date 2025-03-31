@@ -1,42 +1,60 @@
-<div class="row padding-1 p-1">
-    <div class="col-md-12">
-        <!-- Campo para id_usuario -->
-        <div class="mb-3">
-            <label for="id_usuario" class="form-label">ID Usuario</label>
-            <input type="text" name="id_usuario" id="id_usuario" class="form-control" value="{{ old('id_usuario', $perfil->id_usuario ?? '') }}" required>
-        </div>
-        <!-- Campo para experiencia -->
-        <div class="mb-3">
-            <label for="experiencia" class="form-label">Experiencia</label>
-            <textarea name="experiencia" id="experiencia" class="form-control" rows="3">{{ old('experiencia', $perfil->experiencia ?? '') }}</textarea>
-        </div>
-        <!-- Campo para disponibilidad -->
-        <div class="mb-3">
-            <label for="disponibilidad" class="form-label">Disponibilidad</label>
-            <input type="text" name="disponibilidad" id="disponibilidad" class="form-control" value="{{ old('disponibilidad', $perfil->disponibilidad ?? '') }}">
-        </div>
-        <!-- Campo para tarifa_por_hora -->
-        <div class="mb-3">
-            <label for="tarifa_por_hora" class="form-label">Tarifa por Hora</label>
-            <input type="number" step="0.01" name="tarifa_por_hora" id="tarifa_por_hora" class="form-control" value="{{ old('tarifa_por_hora', $perfil->tarifa_por_hora ?? '') }}">
-        </div>
-        <!-- Campo para fotos (JSON) -->
-        <div class="mb-3">
-            <label for="fotos" class="form-label">Fotos (JSON)</label>
-            <textarea name="fotos" id="fotos" class="form-control" rows="3">{{ old('fotos', $perfil->fotos ?? '') }}</textarea>
-        </div>
-        <!-- Campo para calificacion -->
-        <div class="mb-3">
-            <label for="calificacion" class="form-label">Calificación</label>
-            <input type="number" step="0.01" name="calificacion" id="calificacion" class="form-control" value="{{ old('calificacion', $perfil->calificacion ?? 0) }}">
-        </div>
-        <!-- Campo para numero_resenas -->
-        <div class="mb-3">
-            <label for="numero_resenas" class="form-label">Número de Reseñas</label>
-            <input type="number" name="numero_resenas" id="numero_resenas" class="form-control" value="{{ old('numero_resenas', $perfil->numero_resenas ?? 0) }}">
-        </div>
+<div class="row">
+    <!-- Seleccionar Trabajador -->
+    <div class="col-md-6 mb-3">
+        <label for="role_id" class="form-label">Trabajador</label>
+        <select name="role_id" id="role_id" class="form-select" required>
+            <option value="">{{ __('Seleccione un trabajador') }}</option>
+            @foreach($trabajadores as $trabajador)
+                <option value="{{ $trabajador->_id }}"
+                    {{ old('role_id', isset($perfile) ? $perfile->role_id : '') == $trabajador->_id ? 'selected' : '' }}>
+                    {{ $trabajador->nombre }} {{ $trabajador->apellido }}
+                </option>
+            @endforeach
+        </select>
+        @error('role_id')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
-    <div class="col-md-12 mt20 mt-2">
+
+    <!-- Experiencia -->
+    <div class="col-md-6 mb-3">
+        <label for="experiencia" class="form-label">Experiencia (años)</label>
+        <input type="number" name="experiencia" id="experiencia" class="form-control" min="0" max="50"
+               value="{{ old('experiencia', isset($perfile) ? $perfile->experiencia : '') }}" required>
+        @error('experiencia')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Tarifa por Hora -->
+    <div class="col-md-6 mb-3">
+        <label for="tarifa_por_hora" class="form-label">Tarifa por Hora</label>
+        <input type="number" name="tarifa_por_hora" id="tarifa_por_hora" class="form-control" min="0" step="0.01"
+               value="{{ old('tarifa_por_hora', isset($perfile) ? $perfile->tarifa_por_hora : '') }}" required>
+        @error('tarifa_por_hora')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Disponibilidad -->
+    <div class="col-md-6 mb-3">
+        <label for="disponibilidad" class="form-label">Disponibilidad</label>
+        <select name="disponibilidad" id="disponibilidad" class="form-select" required>
+            <option value="1" {{ old('disponibilidad', isset($perfile) ? $perfile->disponibilidad : '1') == '1' ? 'selected' : '' }}>
+                {{ __('Disponible') }}
+            </option>
+            <option value="0" {{ old('disponibilidad', isset($perfile) ? $perfile->disponibilidad : '1') == '0' ? 'selected' : '' }}>
+                {{ __('No disponible') }}
+            </option>
+        </select>
+        @error('disponibilidad')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mt-2">
         <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
     </div>
 </div>

@@ -12,8 +12,9 @@ use MongoDB\Laravel\Eloquent\Model;
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Role extends Model
-{
-    
+{   
+
+    protected $collection = 'roles';
     protected $perPage = 20;
 
     /**

@@ -1,41 +1,52 @@
 @extends('layouts.main')
 
 @section('template_title')
-    {{ $perfile->id_usuario ?? __('Mostrar') . ' ' . __('Perfil') }}
+    Detalle del Perfil
 @endsection
 
 @section('panel-content')
-<section class="content container-fluid">
-    <div class="row">
-        <div class="col-md-12">
+<div class="container-fluid">
+    <div class="row padding-1 p-1">
+        <div class="col-sm-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div class="float-left">
-                        <span class="card-title">{{ __('Mostrar') }} Perfil</span>
-                    </div>
-                    <div class="float-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('perfiles.index') }}"> {{ __('Volver') }}</a>
-                    </div>
+                <div class="card-header">
+                    <h4>{{ __('Detalle del Perfil') }}</h4>
                 </div>
-                <div class="card-body bg-white">
+                <div class="card-body">
                     <div class="mb-3">
-                        <strong>ID Usuario:</strong> {{ $perfile->id_usuario }}
+                        <strong>Trabajador:</strong>
+                        {{ $perfile->role->nombre }} {{ $perfile->role->apellido }}
                     </div>
                     <div class="mb-3">
-                        <strong>Experiencia:</strong> {{ $perfile->experiencia }}
+                        <strong>Experiencia:</strong>
+                        {{ $perfile->experiencia }} años
                     </div>
                     <div class="mb-3">
-                        <strong>Disponibilidad:</strong> {{ $perfile->disponibilidad }}
+                        <strong>Tarifa por Hora:</strong>
+                        ${{ number_format($perfile->tarifa_por_hora, 2) }}
                     </div>
                     <div class="mb-3">
-                        <strong>Tarifa por Hora:</strong> {{ $perfile->tarifa_por_hora }}
+                        <strong>Disponibilidad:</strong>
+                        @if($perfile->disponibilidad)
+                            <span class="badge bg-success">Disponible</span>
+                        @else
+                            <span class="badge bg-secondary">No disponible</span>
+                        @endif
                     </div>
                     <div class="mb-3">
-                        <strong>Reseñas:</strong> {{ $perfile->numero_resenas }}
+                        <strong>Calificación:</strong>
+                        {{ $perfile->calificacion }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Número de Reseñas:</strong>
+                        {{ $perfile->numero_resenas }}
+                    </div>
+                    <div class="mt-3">
+                        <a href="{{ route('perfiles.index') }}" class="btn btn-secondary">{{ __('Volver') }}</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 @endsection

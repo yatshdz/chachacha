@@ -11,6 +11,9 @@
             <div class="card card-default">
                 <div class="card-header">
                     <span class="card-title">{{ __('Crear') }} Perfil</span>
+                    <div class="mt-3">
+                        <a href="{{ route('perfiles.index') }}" class="btn btn-secondary">{{ __('Volver') }}</a>
+                    </div>
                 </div>
                 <div class="card-body bg-white">
                     <form method="POST" action="{{ route('perfiles.store') }}" role="form" enctype="multipart/form-data">

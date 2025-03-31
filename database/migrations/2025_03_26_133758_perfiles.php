@@ -11,15 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perfiles', function (Blueprint $coleccion) {
-            $coleccion->string('id_usuario');
-            $coleccion->text('experiencia')->nullable();
-            $coleccion->string('disponibilidad')->nullable();
-            $coleccion->decimal('tarifa_por_hora', 8, 2)->nullable();
-            $coleccion->json('fotos')->nullable();
-            $coleccion->float('calificacion')->default(0);
-            $coleccion->integer('numero_resenas')->default(0);
-            $coleccion->timestamps();
+        Schema::create('perfiles', function (Blueprint $collection) {
+            // Relación con la colección 'roles' usando ObjectId
+            $collection->objectId('role_id');  // Corregido de 'id_usuario' a 'role_id'
+            
+            // Campos corregidos según los datos mostrados en MongoDB
+            $collection->integer('experiencia');    // De texto a entero (ej: "1_" -> 1)
+            $collection->boolean('disponibilidad'); // De string a booleano (ej: "1_" -> true)
+            $collection->float('tarifa_por_hora'); // Decimal a float (ej: "100_" -> 100.00)
+            
+            // Campos opcionales
+            $collection->json('fotos')->nullable();
+            
+            // Campos con valores por defecto
+            $collection->float('calificacion')->default(0);
+            $collection->integer('numero_resenas')->default(0);
+            
+            $collection->timestamps();
+
+            // Índice para optimizar búsquedas por role_id
+            $collection->index('role_id');
         });
     }
 
@@ -28,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::drop('perfiles');
     }
 };

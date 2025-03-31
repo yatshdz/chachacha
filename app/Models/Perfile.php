@@ -4,32 +4,31 @@ namespace App\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
 
-/**
- * Class Perfile
- *
- *
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
 class Perfile extends Model
 {
-    
-    protected $perPage = 20;
+    protected $collection = 'perfiles';
+    protected $primaryKey = '_id';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        'id_usuario',
+        'role_id',       // Relación con la colección 'roles'
         'experiencia',
         'disponibilidad',
         'tarifa_por_hora',
-        'fotos',
         'calificacion',
-        'numero_resenas',
+        'numero_resenas'
     ];
 
+    protected $casts = [
+        'role_id' => 'objectid',
+        'disponibilidad' => 'boolean',
+        'tarifa_por_hora' => 'float',
+        'calificacion' => 'float'
+    ];
 
+    // Relación con colección de roles
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', '_id');
+    }
+    
 }

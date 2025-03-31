@@ -2,83 +2,97 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Perfile;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\PerfileRequest;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use MongoDB\Laravel\Eloquent\Builder;
 
 class PerfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request): View
+    // Controlador PerfileController.php
+    // En PerfileController.php (método index)
+    public function index(): View
     {
-        $perfiles = Perfile::paginate();
+        $perfiles = Perfile::raw(function ($collection) {
+            return $collection->aggregate([
+                [
+                    '$lookup' => [
+                        'from' => 'roles',
+                        'localField' => 'role_id',
+                        'foreignField' => '_id',
+                        'as' => 'role'
+                    ]
+                ],
+                ['$unwind' => '$role'],
+                ['$match' => ['role.rol' => 'trabajador']],
+                ['$project' => [
+                    'experiencia' => 1,
+                    'disponibilidad' => 1,
+                    'tarifa_por_hora' => 1,
+                    'calificacion' => 1,
+                    'numero_resenas' => 1,
+                    'role.nombre' => 1,
+                    'role.apellido' => 1,
+                ]]
+            ]);
+        });
 
-        return view('perfile.index', compact('perfiles'))
-            ->with('i', ($request->input('page', 1) - 1) * $perfiles->perPage());
+        return view('perfile.index', ['perfiles' => $perfiles]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): View
     {
-        $perfile = new Perfile();
-
-        return view('perfile.create', compact('perfile'));
+        $trabajadores = Role::where('rol', 'trabajador')
+                          ->get(['_id', 'nombre', 'apellido']);
+        
+        return view('perfile.create', compact('trabajadores'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(PerfileRequest $request): RedirectResponse
     {
-        Perfile::create($request->validated());
+        $validated = $request->validated();
+        
+        Perfile::create([
+            'role_id' => $validated['role_id'],
+            'experiencia' => $validated['experiencia'],
+            'disponibilidad' => $validated['disponibilidad'],
+            'tarifa_por_hora' => $validated['tarifa_por_hora'],
+            'calificacion' => 0,
+            'numero_resenas' => 0
+        ]);
 
-        return Redirect::route('perfiles.index')
-            ->with('success', 'Perfile created successfully.');
+        return redirect()->route('perfiles.index')
+                         ->with('success', 'Perfil creado exitosamente');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id): View
+    public function show(Perfile $perfile): View
     {
-        $perfile = Perfile::find($id);
-
-        return view('perfile.show', compact('perfile'));
+        $perfile->load('role');
+        return view('perfiles.show', compact('perfile'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id): View
+    public function edit(Perfile $perfile): View
     {
-        $perfile = Perfile::find($id);
-
-        return view('perfile.edit', compact('perfile'));
+        $trabajadores = Role::where('rol', 'trabajador')
+                          ->get(['_id', 'nombre', 'apellido']);
+        
+        return view('perfiles.edit', compact('perfile', 'trabajadores'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(PerfileRequest $request, Perfile $perfile): RedirectResponse
     {
         $perfile->update($request->validated());
-
-        return Redirect::route('perfiles.index')
-            ->with('success', 'Perfile updated successfully');
+        return redirect()->route('perfiles.index')
+                         ->with('success', 'Perfil actualizado correctamente');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(Perfile $perfile): RedirectResponse
     {
-        Perfile::find($id)->delete();
-
-        return Redirect::route('perfiles.index')
-            ->with('success', 'Perfile deleted successfully');
+        $perfile->delete();
+        return redirect()->route('perfiles.index')
+                         ->with('success', 'Perfil eliminado permanentemente');
     }
+    
 }

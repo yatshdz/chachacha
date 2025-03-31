@@ -216,9 +216,17 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
-              </a>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                    <i class="fas fa-user-circle mr-2"></i> {{ Auth::user()->name ?? 'Usuario' }}
+                </span>
+                @if(Auth::user()->profile_photo_path)
+                    <img class="img-profile rounded-circle" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}">
+                @else
+                    <div class="img-profile rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                @endif
+            </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>

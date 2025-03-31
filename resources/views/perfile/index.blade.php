@@ -31,40 +31,46 @@
                         <table class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr>
-                                    <th>ID Usuario</th>
+                                    <th>Trabajador</th>
                                     <th>Experiencia</th>
+                                    <th>Tarifa/Hora</th>
                                     <th>Disponibilidad</th>
-                                    <th>Tarifa por Hora</th>
                                     <th>Calificación</th>
-                                    <th>Número de Reseñas</th>
+                                    <th>No. Reseñas</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($perfiles as $perfil)
-                                    <tr>
-                                        <td>{{ $perfil->id_usuario }}</td>
-                                        <td>{{ $perfil->experiencia }}</td>
-                                        <td>{{ $perfil->disponibilidad }}</td>
-                                        <td>{{ $perfil->tarifa_por_hora }}</td>
-                                        <td>{{ $perfil->calificacion }}</td>
-                                        <td>{{ $perfil->numero_resenas }}</td>
-                                        <td>
-                                            <form action="{{ route('perfiles.destroy', $perfil->id) }}" method="POST">
-                                                <a class="btn btn-sm btn-primary" href="{{ route('perfiles.show', $perfil->id) }}">
-                                                    <i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}
+                                @foreach($perfiles as $perfile)
+                                        <tr>
+                                            <td>{{ $perfile->role->nombre }} {{ $perfile->role->apellido }}</td>
+                                            <td>{{ $perfile->experiencia }} años</td>
+                                            <td>${{ number_format($perfile->tarifa_por_hora, 2) }}</td>
+                                            <td>
+                                                @if($perfile->disponibilidad)
+                                                    <span class="badge bg-success">Disponible</span>
+                                                @else
+                                                    <span class="badge bg-secondary">No disponible</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $perfile->calificacion }}</td>
+                                            <td>{{ $perfile->numero_resenas }}</td>
+                                            <td>
+                                                <a href="{{ route('perfiles.show', $perfile->_id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-success" href="{{ route('perfiles.edit', $perfil->id) }}">
-                                                    <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
+                                                <a href="{{ route('perfiles.edit', $perfile->_id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este perfil?')">
-                                                    <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                <form action="{{ route('perfiles.destroy', $perfile->_id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro de eliminar este perfil?')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                 @endforeach
                             </tbody>
                         </table>
