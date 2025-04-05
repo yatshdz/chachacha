@@ -29,7 +29,6 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Correo</th>
@@ -41,7 +40,6 @@
                             <tbody>
                                 @foreach ($clientes as $cliente)
                                     <tr>
-                                        <td>{{ ++$i }}</td>
                                         <td>{{ $cliente->nombre }}</td>
                                         <td>{{ $cliente->apellido }}</td>
                                         <td>{{ $cliente->correo }}</td>
@@ -50,15 +48,15 @@
                                         <td>
                                             <form action="{{ route('clientes.destroy', $cliente->_id) }}" method="POST">
                                                 <a class="btn btn-sm btn-primary" href="{{ route('clientes.show', $cliente->_id) }}">
-                                                    <i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}
+                                                    <i class="fa fa-fw fa-eye"></i>
                                                 </a>
                                                 <a class="btn btn-sm btn-success" href="{{ route('clientes.edit', $cliente->_id) }}">
-                                                    <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
+                                                    <i class="fa fa-fw fa-edit"></i>
                                                 </a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar este cliente?')">
-                                                    <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
+                                                    <i class="fa fa-fw fa-trash"></i>
                                                 </button>
                                             </form>
                                         </td>

@@ -1,29 +1,33 @@
 @extends('layouts.main')
 
-@section('template_title')
-    {{ $servicio->name ?? __('Show') . " " . __('Servicio') }}
-@endsection
-
 @section('panel-content')
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Servicio</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('servicios.index') }}"> {{ __('Back') }}</a>
-                        </div>
-                    </div>
-
-                    <div class="card-body bg-white">
-                        
-
-                    </div>
-                </div>
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Detalle del Servicio</h4>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <strong>Nombre:</strong> {{ $servicio->nombre }}
+            </div>
+            <div class="mb-3">
+                <strong>Descripción:</strong> {{ $servicio->descripcion }}
+            </div>
+            <div class="mb-3">
+                <strong>Costo:</strong> ${{ number_format($servicio->costo, 2) }}
+            </div>
+            <div class="mb-3">
+                <strong>Duración Aproximada:</strong> {{ $servicio->duracion_aproximada }}
             </div>
         </div>
-    </section>
+        <div class="card-footer text-end">
+            <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success btn-sm me-2">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+            <a href="{{ route('servicios.index') }}" class="btn btn-secondary btn-sm">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
 @endsection

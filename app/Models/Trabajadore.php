@@ -21,7 +21,14 @@ class Trabajadore extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
-
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'disponibilidad',
+        'tarifa_por_hora',
+        'experiencia',
+        'especialidad',
+        'email'
+    ];
 
 }

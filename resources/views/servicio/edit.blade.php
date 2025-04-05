@@ -1,29 +1,18 @@
 @extends('layouts.main')
 
-@section('template_title')
-    {{ __('Update') }} Servicio
-@endsection
-
 @section('panel-content')
-    <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
-
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Servicio</span>
-                    </div>
-                    <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('servicios.update', $servicio->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
-
-                            @include('servicio.form')
-
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Editar Servicio</h4>
         </div>
-    </section>
+        <div class="card-body">
+            <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                @include('servicio.form')
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

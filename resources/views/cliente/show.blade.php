@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('template_title')
     Mostrar Cliente
 @endsection
 
-@section('content')
+@section('panel-content')
 <div class="container">
     <h1>Detalles del Cliente</h1>
     <div class="card">

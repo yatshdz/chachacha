@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('template_title')
     Editar Cliente
 @endsection
 
-@section('content')
+@section('panel-content')
 <div class="container">
     <h1>Editar Cliente</h1>
     <form method="POST" action="{{ route('clientes.update', $cliente->_id) }}">

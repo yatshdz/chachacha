@@ -34,7 +34,7 @@
     <!-- Clientes -->
             <li class="nav-item">
         <a class="nav-link" href="{{ url('/clientes') }}">
-            <i class="fas fa-user-tie"></i> <!-- Icono correcto -->
+            <i class="fas fa-user-tie"></i> 
             <span>Clientes</span>
         </a>
       </li>
@@ -42,7 +42,7 @@
       <!-- Reservas -->
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/reservas') }}">
-            <i class="fas fa-calendar-check"></i> <!-- Icono correcto -->
+            <i class="fas fa-calendar-check"></i> 
             <span>Reservas</span>
         </a>
       </li>
@@ -50,16 +50,16 @@
       <!-- Trabajadores -->
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/trabajadores') }}">
-            <i class="fas fa-user-tag"></i> <!-- Icono correcto -->
-            <span>Trabajadores</span>
+          <i class="fas fa-users-cog"></i>
+          <span>Trabajadores</span>
         </a>
       </li>
 
       <!-- Servicios -->
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/servicios') }}">
-            <i class="fas fa-user-tag"></i> <!-- Icono correcto -->
-            <span>Servicios</span>
+          <i class="fas fa-concierge-bell"></i>
+          <span>Servicios</span>
         </a>
       </li>
 
