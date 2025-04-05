@@ -17,6 +17,7 @@ return new class extends Migration
             $coleccion->string('correo'); 
             $coleccion->string('telefono')->nullable();
             $coleccion->text('direccion');
+            $coleccion->string('password');
             $coleccion->timestamps();
         });
     }

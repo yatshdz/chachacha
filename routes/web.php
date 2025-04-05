@@ -13,10 +13,11 @@ Route::get('/login', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('perfiles', App\Http\Controllers\PerfileController::class)->middleware('auth');
+
 Route::resource('reservas', App\Http\Controllers\ReservaController::class)->middleware('auth');
-Route::resource('resenas', App\Http\Controllers\ResenaController::class)->middleware('auth');
-Route::resource('pagos', App\Http\Controllers\PagoController::class)->middleware('auth');
-Route::resource('notificaciones', App\Http\Controllers\NotificacioneController::class)->middleware('auth');
-Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('auth');
+
 Route::resource('clientes', App\Http\Controllers\ClienteController::class)->middleware('auth');
+
+Route::resource('servicios', App\Http\Controllers\ServicioController::class)->middleware('auth');
+
+Route::resource('trabajadores', App\Http\Controllers\TrabajadoreController::class)->middleware('auth');

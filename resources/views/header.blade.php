@@ -39,38 +39,6 @@
         </a>
       </li>
 
-      <!-- Notificaciones -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/notificaciones') }}">
-            <i class="fas fa-bell"></i> <!-- Icono correcto -->
-            <span>Notificaciones</span>
-        </a>
-      </li>
-
-      <!-- Pagos -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/pagos') }}">
-            <i class="fas fa-credit-card"></i> <!-- Icono correcto -->
-            <span>Pagos</span>
-        </a>
-      </li>
-
-      <!-- Perfiles -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/perfiles') }}">
-            <i class="fas fa-users"></i> <!-- Icono correcto -->
-            <span>Perfiles</span>
-        </a>
-      </li>
-
-      <!-- Reseñas -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/resenas') }}">
-            <i class="fas fa-star"></i> <!-- Icono correcto -->
-            <span>Reseñas</span>
-        </a>
-      </li>
-
       <!-- Reservas -->
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/reservas') }}">
@@ -79,11 +47,19 @@
         </a>
       </li>
 
-      <!-- Roles -->
+      <!-- Trabajadores -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('/roles') }}">
+        <a class="nav-link" href="{{ url('/trabajadores') }}">
             <i class="fas fa-user-tag"></i> <!-- Icono correcto -->
-            <span>Usuarios</span>
+            <span>Trabajadores</span>
+        </a>
+      </li>
+
+      <!-- Servicios -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/servicios') }}">
+            <i class="fas fa-user-tag"></i> <!-- Icono correcto -->
+            <span>Servicios</span>
         </a>
       </li>
 

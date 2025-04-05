@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PagoRequest extends FormRequest
+class ServicioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,6 @@ class PagoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_reserva'   => 'required|string|max:255',
-            'id_cliente'   => 'required|string|max:255',
-            'monto'        => 'required|numeric',
-            'estado'       => 'required|in:pendiente,completado,fallido',
-            'metodo_pago'  => 'nullable|string|max:255',
         ];
     }
 }

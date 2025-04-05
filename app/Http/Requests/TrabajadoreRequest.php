@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NotificacioneRequest extends FormRequest
+class TrabajadoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,6 @@ class NotificacioneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_usuario' => 'required|string|max:255',
-            'mensaje'    => 'required|string',
-            'leido'      => 'sometimes|boolean',
         ];
     }
 }

@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
+use MongoDb\Laravel\Eloquent\Model;
 
 /**
- * Class Pago
+ * Class Servicio
  *
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Pago extends Model
+class Servicio extends Model
 {
     
     protected $perPage = 20;
@@ -21,13 +21,7 @@ class Pago extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'id_reserva',
-        'id_cliente',
-        'monto',
-        'estado',
-        'metodo_pago',
-    ];
+    protected $fillable = [];
 
 
 }
