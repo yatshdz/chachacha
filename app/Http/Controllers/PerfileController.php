@@ -9,14 +9,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PerfileRequest;
 use Illuminate\Http\RedirectResponse;
 use MongoDB\Laravel\Eloquent\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class PerfileController extends Controller
 {
     // Controlador PerfileController.php
     // En PerfileController.php (método index)
-    public function index(): View
+    public function index(Request $request): View
     {
-        $perfiles = Perfile::raw(function ($collection) {
+        $perPage = 10; // Número de elementos por página
+        $page = $request->input('page', 1);
+
+        $cursor = Perfile::raw(function ($collection) {
             return $collection->aggregate([
                 [
                     '$lookup' => [
@@ -39,6 +44,19 @@ class PerfileController extends Controller
                 ]]
             ]);
         });
+
+        // Convertimos el cursor a array
+        $results = iterator_to_array($cursor);
+        $total = count($results);
+
+        // Obtenemos el "slice" de la página actual
+        $sliced = array_slice($results, ($page - 1) * $perPage, $perPage);
+
+        // Creamos un paginador
+        $perfiles = new LengthAwarePaginator($sliced, $total, $perPage, $page, [
+            'path' => $request->url(),
+            'query' => $request->query()
+        ]);
 
         return view('perfile.index', ['perfiles' => $perfiles]);
     }

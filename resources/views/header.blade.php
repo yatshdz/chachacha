@@ -29,7 +29,16 @@
   
       <!-- Heading -->
       <div class="sidebar-heading">Principal</div>
-  
+
+
+    <!-- Clientes -->
+            <li class="nav-item">
+        <a class="nav-link" href="{{ url('/clientes') }}">
+            <i class="fas fa-user-tie"></i> <!-- Icono correcto -->
+            <span>Clientes</span>
+        </a>
+      </li>
+
       <!-- Notificaciones -->
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/notificaciones') }}">

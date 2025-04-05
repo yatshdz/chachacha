@@ -19,3 +19,4 @@ Route::resource('resenas', App\Http\Controllers\ResenaController::class)->middle
 Route::resource('pagos', App\Http\Controllers\PagoController::class)->middleware('auth');
 Route::resource('notificaciones', App\Http\Controllers\NotificacioneController::class)->middleware('auth');
 Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('auth');
+Route::resource('clientes', App\Http\Controllers\ClienteController::class)->middleware('auth');
