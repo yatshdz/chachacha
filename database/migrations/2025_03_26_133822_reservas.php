@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $coleccion) {
             $coleccion->string('id_cliente');
             $coleccion->string('id_trabajador');
+            $coleccion->string('id_servicio');
             $coleccion->dateTime('fecha');
             $coleccion->integer('duracion')->nullable();
             $coleccion->enum('estado', ['pendiente', 'confirmada', 'completada', 'cancelada'])->default('pendiente');
+            $coleccion->string('comentarios');
             $coleccion->timestamps();
         });
     }

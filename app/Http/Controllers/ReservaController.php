@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserva;
+use App\Models\Cliente;
+use App\Models\Trabajadore;
+use App\Models\Servicio;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservaRequest;
@@ -28,8 +31,11 @@ class ReservaController extends Controller
     public function create(): View
     {
         $reserva = new Reserva();
+        $clientes = Cliente::all();
+        $trabajadores = Trabajadore::all();
+        $servicios = Servicio::all();
 
-        return view('reserva.create', compact('reserva'));
+        return view('reserva.create', compact('reserva', 'clientes', 'trabajadores', 'servicios'));
     }
 
     /**
@@ -59,8 +65,11 @@ class ReservaController extends Controller
     public function edit($id): View
     {
         $reserva = Reserva::find($id);
+        $clientes = Cliente::all();
+        $trabajadores = Trabajadore::all();
+        $servicios = Servicio::all();
 
-        return view('reserva.edit', compact('reserva'));
+        return view('reserva.edit', compact('reserva', 'clientes', 'trabajadores', 'servicios'));
     }
 
     /**
@@ -74,6 +83,9 @@ class ReservaController extends Controller
             ->with('success', 'Reserva updated successfully');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy($id): RedirectResponse
     {
         Reserva::find($id)->delete();
