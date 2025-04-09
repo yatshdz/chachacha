@@ -22,3 +22,8 @@
     <label for="direccion">Dirección</label>
     <textarea name="direccion" class="form-control" rows="3" required>{{ old('direccion', $cliente->direccion ?? '') }}</textarea>
 </div>
+
+<div class="form-group text-end">
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="{{ route('reservas.index') }}" class="btn btn-secondary">Cancelar</a>
+</div>

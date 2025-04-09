@@ -40,7 +40,7 @@ class TrabajadoreController extends Controller
         Trabajadore::create($request->validated());
 
         return Redirect::route('trabajadores.index')
-            ->with('success', 'Trabajadore created successfully.');
+            ->with('success', 'Trabajador registrado correctamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class TrabajadoreController extends Controller
         $trabajadore->update($request->validated());
 
         return Redirect::route('trabajadores.index')
-            ->with('success', 'Trabajadore updated successfully');
+            ->with('success', 'Trabajador actualizado correctamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class TrabajadoreController extends Controller
         Trabajadore::find($id)->delete();
 
         return Redirect::route('trabajadores.index')
-            ->with('success', 'Trabajadore deleted successfully');
+            ->with('success', 'Trabajador eliminado correctamente');
     }
 }

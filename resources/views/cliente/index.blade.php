@@ -14,8 +14,8 @@
                         {{ __('Clientes') }}
                     </span>
                     <div class="float-right">
-                        <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-sm">
-                            {{ __('Crear Nuevo') }}
+                        <a href="{{ route('clientes.create') }}" class="btn btn-success btn-sm">
+                        <i class="fas fa-plus"></i> {{ __('Agregar Cliente') }}
                         </a>
                     </div>
                 </div>

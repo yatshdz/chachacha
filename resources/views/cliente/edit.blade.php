@@ -11,7 +11,6 @@
         @csrf
         @method('PATCH')
         @include('cliente.form')
-        <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
     </form>
 </div>
 @endsection
