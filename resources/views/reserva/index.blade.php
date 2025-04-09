@@ -36,7 +36,7 @@
                   <th>Trabajador</th>
                   <th>Servicio</th>
                   <th>Fecha</th>
-                  <th>Duración</th>
+                  <th>Duración/minutos</th>
                   <th>Estado</th>
                   <th>Comentarios</th>
                   <th>Acciones</th>

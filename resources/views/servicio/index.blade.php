@@ -34,8 +34,8 @@
                   <th>No.</th>
                   <th>Nombre</th>
                   <th>Descripción</th>
-                  <th>Costo</th>
-                  <th>Duración Aprox.</th>
+                  <th>Costo/Hora</th>
+                  <th>Duración/Hora</th>
                   <th>Acciones</th>
                 </tr>
               </thead>

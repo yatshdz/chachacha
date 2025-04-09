@@ -14,7 +14,6 @@
             <form method="POST" action="{{ route('trabajadores.store') }}" role="form" enctype="multipart/form-data">
                 @csrf
                 @include('trabajadore.form')
-                <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
         </div>
     </div>

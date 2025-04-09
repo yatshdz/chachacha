@@ -35,7 +35,7 @@
                   <th>Trabajador</th>
                   <th>Disponible</th>
                   <th>Tarifa/Hora</th>
-                  <th>Experiencia</th>
+                  <th>Experiencia/Años</th>
                   <th>Especialidad</th>
                   <th>Email</th>
                   <th>Acciones</th>
