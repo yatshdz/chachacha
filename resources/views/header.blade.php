@@ -63,6 +63,15 @@
         </a>
       </li>
 
+      <!-- API Fake Persons -->
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/faker/personas') }}">
+        <i class="fas fa-user-friends"></i>
+        <span>API Fake Persons</span>
+      </a>
+    </li>
+
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
   

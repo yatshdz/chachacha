@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FakerPersonaController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -26,4 +27,4 @@ Route::resource('servicios', App\Http\Controllers\ServicioController::class)->mi
 
 Route::resource('trabajadores', App\Http\Controllers\TrabajadoreController::class)->middleware('auth');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/faker/personas', [FakerPersonaController::class, 'obtenerPersonas']);
